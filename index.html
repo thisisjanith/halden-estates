@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Halden Estates — Exceptional homes, honestly sold</title>
+    <meta name="description" content="Halden Estates is a boutique real estate agency for architect-designed homes, city apartments and coastal villas." />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://images.unsplash.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Inter+Tight:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="loader" id="loader" aria-hidden="true">
+      <div class="loader__logo">Halden<span>Estates</span></div>
+      <div class="loader__bar"><i id="loader-bar"></i></div>
+    </div>
+
+    <header class="nav" id="nav">
+      <a href="#top" class="logo" data-scroll="#top">
+        <svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true"><path d="M5 26V13l11-7 11 7v13" stroke="currentColor" stroke-width="2" fill="none"/><path d="M12.5 26v-7h7v7" stroke="var(--brass)" stroke-width="2" fill="none"/></svg>
+        <span>Halden<small>Estates</small></span>
+      </a>
+      <nav class="nav__links">
+        <a href="#listings" data-scroll="#listings">Buy</a>
+        <a href="#spotlight" data-scroll="#spotlight">Featured</a>
+        <a href="#areas" data-scroll="#areas">Neighbourhoods</a>
+        <a href="#calc" data-scroll="#calc">Mortgage</a>
+        <a href="#team" data-scroll="#team">Agents</a>
+      </nav>
+      <a href="#contact" class="btn btn--line" data-scroll="#contact">Book a viewing</a>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><i></i><i></i></button>
+    </header>
+    <div class="drawer" id="drawer">
+      <a href="#listings" data-scroll="#listings">Buy</a>
+      <a href="#spotlight" data-scroll="#spotlight">Featured</a>
+      <a href="#areas" data-scroll="#areas">Neighbourhoods</a>
+      <a href="#calc" data-scroll="#calc">Mortgage</a>
+      <a href="#team" data-scroll="#team">Agents</a>
+      <a href="#contact" data-scroll="#contact">Book a viewing</a>
+    </div>
+
+    <main id="top">
+      <!-- HERO -->
+      <section class="hero" id="hero">
+        <canvas id="villa" class="hero__canvas"></canvas>
+        <div class="hero__fade"></div>
+        <div class="hero__copy" id="hero-copy">
+          <p class="eyebrow">Boutique real estate · Est. 2009</p>
+          <h1 class="hero__title"><span class="ln"><span>Homes worth</span></span><span class="ln"><span><em>coming home to.</em></span></span></h1>
+          <p class="hero__lede">Architect-designed houses, light-filled apartments and quiet coastal villas — sold with honesty, not hype.</p>
+        </div>
+        <form class="finder" id="finder" autocomplete="off">
+          <label><span>Looking for</span>
+            <select name="type"><option value="all">Any property</option><option>Villa</option><option>House</option><option>Apartment</option></select></label>
+          <label><span>Bedrooms</span>
+            <select name="beds"><option value="0">Any</option><option value="2">2+</option><option value="3">3+</option><option value="4">4+</option></select></label>
+          <label><span>Max price</span>
+            <select name="max"><option value="99">No limit</option><option value="1.5">$1.5M</option><option value="2.5">$2.5M</option><option value="4">$4M</option></select></label>
+          <button type="submit" class="btn btn--brass">Search homes</button>
+        </form>
+        <div class="hero__time"><span id="hero-time">Golden hour in</span> <b id="hero-hour">6 h</b></div>
+      </section>
+
+      <!-- STATS -->
+      <section class="stats">
+        <div class="container stats__row">
+          <div><b data-to="1240">0</b><span>Homes sold</span></div>
+          <div><b data-to="98" data-suf="%">0</b><span>Asking price achieved</span></div>
+          <div><b data-to="21" data-suf=" days">0</b><span>Average time to sell</span></div>
+          <div><b data-to="4.9" data-dec="1" data-suf="/5">0</b><span>Client rating</span></div>
+        </div>
+      </section>
+
+      <!-- LISTINGS -->
+      <section class="listings" id="listings">
+        <div class="container">
+          <div class="head">
+            <div>
+              <p class="eyebrow">For sale now</p>
+              <h2 class="title">Currently <em>on the market</em></h2>
+            </div>
+            <div class="filters" id="filters">
+              <div class="seg" id="f-type">
+                <button class="is-on" data-v="all">All</button><button data-v="Villa">Villas</button><button data-v="House">Houses</button><button data-v="Apartment">Apartments</button>
+              </div>
+              <label class="range"><span>Max <b id="f-max-out">$5.0M</b></span><input type="range" id="f-max" min="0.8" max="5" step="0.1" value="5" /></label>
+              <label class="sel"><span>Beds</span><select id="f-beds"><option value="0">Any</option><option value="2">2+</option><option value="3">3+</option><option value="4">4+</option></select></label>
+            </div>
+          </div>
+          <div class="listings__body">
+            <div class="grid" id="grid"></div>
+            <aside class="map" id="map">
+              <svg viewBox="0 0 400 520" id="map-svg" aria-label="Map of listings"></svg>
+              <p class="map__count"><b id="count">9</b> homes match</p>
+            </aside>
+          </div>
+          <p class="empty" id="empty" hidden>No homes match those filters — try widening your budget.</p>
+        </div>
+      </section>
+
+      <!-- SPOTLIGHT -->
+      <section class="spotlight" id="spotlight">
+        <div class="spot__pin">
+          <div class="spot__media" id="spot-media"></div>
+          <div class="spot__info">
+            <p class="eyebrow eyebrow--brass">Featured listing</p>
+            <h2 class="title title--light">The Glass House, <em>Westcliff</em></h2>
+            <p class="spot__desc">A 2019 award-winning home wrapped around a mature olive garden, with a 15-metre pool and uninterrupted sea views.</p>
+            <ul class="spot__specs">
+              <li><b>5</b><span>Bedrooms</span></li><li><b>4</b><span>Bathrooms</span></li><li><b>410</b><span>m² interior</span></li><li><b>0.6</b><span>acre plot</span></li>
+            </ul>
+            <div class="spot__rooms" id="spot-rooms"></div>
+            <div class="spot__price"><span>Guide price</span><b>$4,250,000</b></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- AREAS -->
+      <section class="areas" id="areas">
+        <div class="container areas__grid">
+          <div>
+            <p class="eyebrow">Neighbourhoods</p>
+            <h2 class="title">Know the street <em>before you move.</em></h2>
+            <ul class="area-list" id="area-list"></ul>
+          </div>
+          <div class="area-view" id="area-view"></div>
+        </div>
+      </section>
+
+      <!-- CALCULATOR -->
+      <section class="calc" id="calc">
+        <div class="container calc__grid">
+          <div>
+            <p class="eyebrow">Plan your budget</p>
+            <h2 class="title">What would it <em>cost each month?</em></h2>
+            <div class="calc__inputs">
+              <label><span>Home price <b id="o-price"></b></span><input type="range" id="i-price" min="300000" max="5000000" step="10000" value="1250000" /></label>
+              <label><span>Deposit <b id="o-dep"></b></span><input type="range" id="i-dep" min="5" max="60" step="1" value="20" /></label>
+              <label><span>Interest rate <b id="o-rate"></b></span><input type="range" id="i-rate" min="2" max="9" step="0.05" value="5.4" /></label>
+              <div class="term" id="i-term"><span>Term</span><button data-y="15">15 yrs</button><button data-y="25">25 yrs</button><button class="is-on" data-y="30">30 yrs</button></div>
+            </div>
+          </div>
+          <div class="calc__out">
+            <svg viewBox="0 0 200 200" class="donut">
+              <circle cx="100" cy="100" r="80" class="donut__bg" />
+              <circle cx="100" cy="100" r="80" class="donut__int" id="d-int" />
+              <circle cx="100" cy="100" r="80" class="donut__prin" id="d-prin" />
+            </svg>
+            <div class="calc__center"><small>Monthly</small><b id="o-month">$0</b></div>
+            <ul class="calc__legend">
+              <li><i class="k1"></i>Loan amount <b id="o-prin"></b></li>
+              <li><i class="k2"></i>Total interest <b id="o-int"></b></li>
+              <li><i class="k3"></i>Total repaid <b id="o-loan"></b></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- TEAM -->
+      <section class="team" id="team">
+        <div class="container">
+          <div class="head">
+            <div>
+              <p class="eyebrow">Our agents</p>
+              <h2 class="title">Small team, <em>big local knowledge.</em></h2>
+            </div>
+          </div>
+          <div class="team__grid" id="team-grid"></div>
+          <figure class="quote">
+            <blockquote id="quote">“Halden sold our home in nine days, above asking — and somehow made the whole thing feel calm.”</blockquote>
+            <figcaption>— Priya & Tom, sold in Westcliff</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="contact" id="contact">
+        <img class="contact__bg" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1800&q=72&auto=format&fit=crop" alt="" loading="lazy" />
+        <div class="contact__card">
+          <p class="eyebrow eyebrow--brass">Private viewings</p>
+          <h2 class="title title--light">See it <em>in person.</em></h2>
+          <form id="viewing" class="viewing">
+            <input name="name" placeholder="Your name" required />
+            <input name="email" type="email" placeholder="Email address" required />
+            <select name="home" id="viewing-home"></select>
+            <input name="date" type="date" required />
+            <button class="btn btn--brass" type="submit">Request viewing</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer__top">
+          <a href="#top" class="logo logo--light" data-scroll="#top"><svg viewBox="0 0 32 32" width="30" height="30"><path d="M5 26V13l11-7 11 7v13" stroke="currentColor" stroke-width="2" fill="none"/><path d="M12.5 26v-7h7v7" stroke="var(--brass)" stroke-width="2" fill="none"/></svg><span>Halden<small>Estates</small></span></a>
+          <div class="footer__cols">
+            <div><h4>Office</h4><p>22 Harbour Row<br/>Westcliff, WC1 4HE</p></div>
+            <div><h4>Contact</h4><p>+1 (555) 014-2290<br/>hello@halden.estate</p></div>
+            <div><h4>Follow</h4><p><a href="#">Instagram</a><br/><a href="#">LinkedIn</a></p></div>
+          </div>
+        </div>
+        <div class="footer__bottom">
+          <small>© <span id="year"></span> Halden Estates — a portfolio concept.</small>
+          <small>Developed by <a class="credit" href="https://tappyly.com" target="_blank" rel="noopener">Tappyly Technologies</a></small>
+          <small>Photos via Unsplash · 3D villa in three.js</small>
+        </div>
+      </div>
+    </footer>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
